@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = [u'twohomez.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
