@@ -152,29 +152,28 @@
             </div>
             <!--end center-->
             <div class="row">
-              {% for house in featured_list %}
+              {% for home in featured_list %}
                 <div class="col-md-{{size_map|index:forloop.counter0}}">
                   <div class="item" data-id="1">
-                      <a href="detail.html">
+                      <a href="/homes/{{home.id}}/details">
                           <div class="description">
-                              <div class="label label-default">{{house.sale_type}}</div>
-                              <h3>{{house.address0}}</h3>
-                              <h4>{{house.address1}}</h4>
-                              <h4>{{house.num_bedrooms}} bed, {{house.num_bathrooms}} bath</h4>
+                              <div class="label label-default">{{home.sale_type}}</div>
+                              <h3>{{home.address0}}</h3>
+                              <h4>{{home.address1}}</h4>
+                              <h4>{{home.num_bedrooms}} bed, {{home.num_bathrooms}} bath</h4>
                           </div>
                           <!--end description-->
                           <div class="image bg-transfer">
-                              <img src="{{house.pic_url}}" alt="">
+                              <img src="{{home.pic_url}}" alt="">
                           </div>
                           <!--end image-->
                       </a>
                       <div class="additional-info">
-                          <h4>${{house.listing_price|intcomma}}</h4>
+                          <h4>${{home.listing_price|intcomma}}</h4>
                           <div class="controls-more">
                               <ul>
-                                  <li><a href="#">Add to favorites</a></li>
-                                  <li><a href="#">Add to watchlist</a></li>
-                                  <li><a href="#" class="quick-detail">Quick detail</a></li>
+                                <li><a href="{{home.zillow_url}}">See on Zillow</a></li>
+                                <li><a href="/homes/{{home.id}}/details" class="quick-detail">See Details</a></li>
                               </ul>
                           </div>
                           <!--end controls-more-->
