@@ -1,0 +1,147 @@
+{% extends "twohomez/base.html" %}
+{% load static %}
+{% load twohomez_extras %}
+{% load humanize %}
+
+{% block page_css %}
+<link rel="stylesheet" href="{% static 'twohomez/css/trackpad-scroll-emulator.css' %}" type="text/css">
+{% endblock %}
+
+{% block page_title %}
+<title>2Homez | Search Results</title>
+{% endblock %}
+
+{% block content %}
+<div id="page-content">
+  <div class="hero-section full-screen has-map has-sidebar">
+    <div class="map-wrapper">
+      <div class="geo-location">
+        <i class="fa fa-map-marker"></i>
+      </div>
+      <div class="map" id="map-homepage"></div>
+    </div>
+    <!--end map-wrapper-->
+    <div class="results-wrapper">
+      <div class="form search-form inputs-underline">
+        <form action="/search_listings/" , method="post">
+          {% csrf_token %}
+          <div class="section-title">
+            <h2>Search</h2>
+          </div>
+          <div class="form-group">
+            <select class="form-control selectpicker" name="city" title="City">
+              <option value="0">San Francisco</option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <select class="form-control selectpicker" name="neighborhoods[]" multiple title="Neighborhoods" data-actions-box="true">
+                  {% for n in neighborhoods %}
+                  <option value="{{forloop.counter0}}">{{ n }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <!--end form-group-->
+            </div>
+            <!--end col-md-6-->
+            <div class="col-md-6 col-sm-6">
+              <div class="form-group">
+                <div class="ui-slider" id="price-slider" data-value-min="10000" data-value-max="30000000" data-value-type="price" data-currency="$" data-currency-placement="before">
+                  <div class="values clearfix">
+                    <input class="value-min" name="price-min[]" readonly>
+                    <input class="value-max" name="price-max[]" readonly>
+                  </div>
+                  <div class="element"></div>
+                </div>
+                <!--end price-slider-->
+              </div>
+            </div>
+            <!--end col-md-6-->
+          </div>
+          <!--end row-->
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-search"></i></button>
+          </div>
+          <!--end form-group-->
+        </form>
+        <!--end form-hero-->
+      </div>
+      <div class="results">
+        <div class="tse-scrollable">
+          <div class="tse-content">
+            <div class="section-title">
+              <h2>Search Results<span class="results-number">{{results|length}}</span></h2>
+            </div>
+            <!--end section-title-->
+            <div class="results-content">
+              {% for house in results %}
+              <div class="result-item" data-id="{{house.id}}"
+                   data-lat="{{house.latitude}}" data-lon="{{house.longitude}}"
+                   data-pic="{{house.pic_url}}" data-addr="{{house.address0}} {{house.address1}}">
+                <a href="homes/{}/detail">
+                  <h3>{{house.address0}} {{house.address1}}</h3>
+                  <div class="result-item-detail">
+                    <div class="image" style="background-image: url({{house.pic_url}})">
+                    </div>
+                    <div class="description">
+                      <h5>{{house.num_bedrooms|intcomma}} bds &middot {{house.num_bathrooms|intcomma}} ba</h5>
+                      <div class="label label-default">{{house.sale_type}}</div>
+                      <h5>${{house.listing_price|intcomma}}</h5>
+                      <p id="latitude-{{house.id}}" style="display: none;">${{house.latitude}}</p>
+                      <p id="longitude-{{house.id}}" style="display: none;">${{house.longitude}}</p>
+                    </div>
+                  </div>
+                </a>
+                <div class="controls-more">
+                  <ul>
+                    <li><a href="#" class="add-to-favorites">Add to favorites</a></li>
+                    <li><a href="#" class="add-to-watchlist">Add to watchlist</a></li>
+                  </ul>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+            <!--end results-content-->
+          </div>
+          <!--end tse-content-->
+        </div>
+        <!--end tse-scrollable-->
+      </div>
+      <!--end results-->
+    </div>
+    <!--end results-wrapper-->
+  </div>
+  <!--end hero-section-->
+</div>
+<!--end page-content-->
+{% endblock %}
+<!--end page-wrapper-->
+
+{% block page_js %}
+<script type="text/javascript" src="{% static 'twohomez/js/jquery.trackpad-scroll-emulator.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/bootstrap-select.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/icheck.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/jquery.validate.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/infobox.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/jquery.nouislider.all.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/richmarker-compiled.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/markerclusterer_packed.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/maps.js' %}"></script>
+<script>
+  var optimizedDatabaseLoading = 0;
+  var _latitude = 37.7749;
+  var _longitude = -122.4194;
+  var element = "map-homepage";
+  var markerTarget = "sidebar"; // use "sidebar", "infobox" or "modal" - defines the action after click on marker
+  var sidebarResultTarget = "sidebar"; // use "sidebar", "modal" or "new_page" - defines the action after click on marker
+  var showMarkerLabels = false; // next to every marker will be a bubble with title
+  var mapDefaultZoom = 13; // default zoom
+  heroMap(_latitude, _longitude, element, markerTarget, sidebarResultTarget, showMarkerLabels, mapDefaultZoom);
+</script>
+
+{% endblock %}
+
+
+</body>

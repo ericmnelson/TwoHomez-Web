@@ -1,0 +1,216 @@
+{% extends "twohomez/base.html" %}
+{% load static %}
+{% load twohomez_extras %}
+{% load humanize %}
+
+{% block page_css %}
+<!-- <link rel="stylesheet" href="assets/css/zabuto_calendar.min.css" type="text/css">
+<link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
+<link rel="stylesheet" href="assets/css/jquery.nouislider.min.css" type="text/css"> -->
+<link rel="stylesheet" href="{% static 'twohomez/css/zabuto_calendar.min.css' %}" type="text/css">
+
+{% endblock %}
+
+{% block page_title %}
+  <title>2Homez | Home</title>
+{% endblock %}
+
+{% block content %}
+  <div id="page-content">
+    <div class="hero-section has-background height-450px">
+      <div class="wrapper">
+        <div class="inner">
+          <div class="center">
+            <div class="page-title">
+              <h1>2Homez</h1>
+              <h2>A second home may be more affordable than you think</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="background-wrapper">
+        <div class="bg-transfer opacity-70"><img src="{% static 'twohomez/img/sf_skyline.jpg' %}" alt=""></div>
+        <div class="background-color background-color-black"></div>
+      </div>
+      <!--end background-wrapper-->
+    </div>
+    <!--end hero-section-->
+    <section class="block background-is-dark">
+        <div class="form search-form">
+            <div class="container">
+                <div class="section-title">
+                    <h2 class="center">Find your Dream Home away from Home</h2>
+                </div>
+                <form action="/search_listings/", method="post">
+                  {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control selectpicker" name="city" title="City">
+                                    <option value="0">San Francisco</option>
+                                </select>
+                            </div>
+                            <!--end form-group-->
+                        </div>
+                        <!--end col-md-4-->
+                        <div class="col-md-4 col-sm-4">
+                            <div class="form-group">
+                                <select class="form-control selectpicker" name="neighborhoods[]"
+                                        multiple title="Choose one or more neighborhoods" data-actions-box="true">
+                                      {% for n in neighborhoods %}
+                                        <option value="{{forloop.counter0}}">{{ n }}</option>
+                                      {% endfor %}
+                                </select>
+                            </div>
+                            <!--end form-group-->
+                        </div>
+                        <!--end col-md-4-->
+                        <div class="col-md-3">
+                            <div class="ui-slider" id="price-slider" data-value-min="10000" data-value-max="30000000" data-value-type="price" data-currency="$" data-currency-placement="before">
+                                <div class="values clearfix">
+                                    <input class="value-min" name="price-min[]" readonly>
+                                    <input class="value-max" name="price-max[]" readonly>
+                                </div>
+                                <div class="element"></div>
+                            </div>
+                            <!--end price-slider-->
+                            <div class="text-center">
+                              Price Range
+                            </div>
+                        </div>
+                        <!--end col-md-4-->
+                        <div class="col-md-1 col-sm-4">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary width-100 darker"><i class="fa fa-search"></i></button>
+                            </div>
+                            <!--end form-group-->
+                        </div>
+                        <!--end col-md-4-->
+                    </div>
+                    <!--
+                    <div class="row">
+                        <div class="col-md-9 col-sm-8">
+                            <ul class="checkboxes">
+                                <li>
+                                    <div class="form-group">
+                                        <label class="no-margin"><input type="checkbox" name="1">Hotel</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="no-margin"><input type="checkbox" name="2">Event</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="no-margin"><input type="checkbox" name="3">Restaurant</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="no-margin"><input type="checkbox" name="4">Trip</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="no-margin"><input type="checkbox" name="5">Concert</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="no-margin"><input type="checkbox" name="6">Adrenaline</label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label class="no-margin"><input type="checkbox" name="6">Wellness</label>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </form>
+                <!--end form-hero-->
+            </div>
+            <!--end container-->
+        </div>
+        <!--end search-form-->
+        <div class="background-wrapper">
+            <div class="background-color background-color-default"></div>
+            <div class="bg-transfer opacity-40"><img src="{% static 'twohomez/img/background-04.jpg' %}" alt=""></div>
+        </div>
+    </section>
+    <section class="block">
+        <div class="container">
+            <div class="center">
+                <div class="section-title">
+                    <div class="center">
+                        <h2>Featured Places</h2>
+                    </div>
+                </div>
+                <!--end section-title-->
+            </div>
+            <!--end center-->
+            <div class="row">
+              {% for house in featured_list %}
+                <div class="col-md-{{size_map|index:forloop.counter0}}">
+                  <div class="item" data-id="1">
+                      <a href="detail.html">
+                          <div class="description">
+                              <div class="label label-default">{{house.sale_type}}</div>
+                              <h3>{{house.address0}}</h3>
+                              <h4>{{house.address1}}</h4>
+                              <h4>{{house.num_bedrooms}} bed, {{house.num_bathrooms}} bath</h4>
+                          </div>
+                          <!--end description-->
+                          <div class="image bg-transfer">
+                              <img src="{{house.pic_url}}" alt="">
+                          </div>
+                          <!--end image-->
+                      </a>
+                      <div class="additional-info">
+                          <h4>${{house.listing_price|intcomma}}</h4>
+                          <div class="controls-more">
+                              <ul>
+                                  <li><a href="#">Add to favorites</a></li>
+                                  <li><a href="#">Add to watchlist</a></li>
+                                  <li><a href="#" class="quick-detail">Quick detail</a></li>
+                              </ul>
+                          </div>
+                          <!--end controls-more-->
+                      </div>
+                      <!--end additional-info-->
+                  </div>
+                  <!--end item-->
+              </div>
+              {% endfor %}
+            </div>
+            <!--end row-->
+            <div class="center">
+                <a href="listing.html" class="btn btn-primary btn-light-frame btn-rounded btn-framed arrow">View all listings</a>
+            </div>
+        <!--end center-->
+        </div>
+        <!--end container-->
+    </section>
+  </div>
+{% endblock %}
+
+{% block page_js %}
+<script type="text/javascript" src="{% static 'twohomez/js/bootstrap-select.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/icheck.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/jquery.validate.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/infobox.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/bootstrap-datepicker.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/jquery.nouislider.all.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/maps.js' %}"></script>
+
+  <!--
+<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
+<script type="text/javascript" src="assets/js/markerclusterer_packed.js"></script>
+<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script> -->
+{% endblock %}

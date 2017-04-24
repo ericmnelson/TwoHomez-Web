@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="ThemeStarz">
+
+    <link href="{% static 'twohomez/fonts/font-awesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'twohomez/fonts/elegant-fonts.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700,900,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'twohomez/css/bootstrap.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'twohomez/css/jquery.nouislider.min.css' %}" type="text/css">
+
+    <link rel="stylesheet" href="{% static 'twohomez/css/style.css' %}" type="text/css">
+		<link rel="stylesheet" href="{% static 'twohomez/css/custom.css' %}" type="text/css">
+
+    {% block page_css %}{% endblock %}
+    {% block page_title %}{% endblock %}
+</head>
+
+<body class="nav-btn-only homepage">
+<div class="page-wrapper">
+    {% include 'twohomez/header.html' %}
+    {% block content %}{% endblock %}
+</div>
+<!--end page-wrapper-->
+<a href="#" class="to-top scroll" data-show-after-scroll="600"><i class="arrow_up"></i></a>
+
+<script type="text/javascript" src="{% static 'twohomez/js/jquery-2.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'twohomez/js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyDHj5z0jvSLg-ygBxNMToBCZSUj-sFxZLM&libraries=places"></script>
+
+{% block page_js %}
+{% endblock %}
+
+<script type="text/javascript" src="{% static 'twohomez/js/custom.js' %}"></script>
+</body>
