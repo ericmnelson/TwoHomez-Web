@@ -79,7 +79,7 @@
               <div class="result-item" data-id="{{house.id}}"
                    data-lat="{{house.latitude}}" data-lon="{{house.longitude}}"
                    data-pic="{{house.pic_url}}" data-addr="{{house.address0}} {{house.address1}}">
-                <a href="homes/{}/detail">
+                <a href="/homes/{{house.id}}/details">
                   <h3>{{house.address0}} {{house.address1}}</h3>
                   <div class="result-item-detail">
                     <div class="image" style="background-image: url({{house.pic_url}})">

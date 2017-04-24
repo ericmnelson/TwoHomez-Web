@@ -17,7 +17,12 @@ def index(request):
     return render(request, 'twohomez/index.html', context)
 
 def home_detail(request, home_id):
-    return HttpResponse("You're looking at home {}".format(home_id))
+    house = Home.objects.get(id=int(home_id))
+    context = {
+        'house': house,
+        'neighborhoods': [n[1] for n in Home.NEIGHBORHOODS],
+    }
+    return render(request, 'twohomez/details.html', context)
 
 def search_listings(request):
     city = request.POST.get('city', "San francisco")

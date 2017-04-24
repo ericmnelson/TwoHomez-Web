@@ -838,7 +838,7 @@ function simpleMap(_latitude, _longitude, element, markerDrag, place) {
       position: mapCenter,
       map: map,
       draggable: markerDrag,
-      content: "<img src='assets/img/marker.png'>",
+      content: "<img src='http://themestarz.net/html/locations/assets/img/marker.png'>",
       flat: true
     });
     google.maps.event.addListener(marker, "dragend", function() {

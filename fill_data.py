@@ -44,6 +44,7 @@ if __name__ == "__main__":
             listing_price=int(row['price']),
             sale_type=row['sale_type'],
             pic_url=row['photo_url'],
+            zillow_url=row['url'],
             latitude=row['latitude'],
             longitude=row['longitude'],
             num_bedrooms=num_bedrooms,

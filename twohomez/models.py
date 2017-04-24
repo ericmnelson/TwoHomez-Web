@@ -11,6 +11,7 @@ class Home(models.Model):
     zip_code = models.IntegerField()
     listing_price = models.PositiveIntegerField()
     pic_url = models.CharField(max_length=200, null=True)
+    zillow_url = models.CharField(max_length=200, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
     num_bedrooms = models.FloatField()
