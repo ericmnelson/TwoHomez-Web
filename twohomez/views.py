@@ -18,8 +18,15 @@ def index(request):
 
 def home_detail(request, home_id):
     house = Home.objects.get(id=int(home_id))
+    similar_homes = Home.objects.filter(neighborhood=house.neighborhood,
+                                     num_bathrooms=house.num_bathrooms,
+                                     num_bedrooms__gte=house.num_bathrooms,
+                                     listing_price__lte=(house.listing_price *1.15),
+                                     listing_price__gte=(house.listing_price *.85),
+                                     )[:3]
     context = {
         'house': house,
+        'similar_homes': similar_homes,
         'neighborhoods': [n[1] for n in Home.NEIGHBORHOODS],
     }
     return render(request, 'twohomez/details.html', context)

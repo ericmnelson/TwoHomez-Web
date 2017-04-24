@@ -13,7 +13,7 @@
 
 {% block content %}
 <div id="page-content">
-  <div class="container">
+  <div class="container" style="width:1020px;">
     <ol class="breadcrumb">
 
     </ol>
@@ -25,7 +25,7 @@
             <h3>{{house.address1}}</h3>
           </div>
           <!--end page-title-->
-          <a href="{{house.pic_url}}" class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-home"></i>Buy this home</a>
+          <a href="{{house.zillow_url}}" target="_blank"  class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-home"></i>Buy this home</a>
         </section>
 
         <div class="row">
@@ -76,98 +76,6 @@
               </dl>
             </section>
 
-            <section>
-              <h2>Reviews</h2>
-              <div class="review">
-                <div class="image">
-                  <div class="bg-transfer"><img src="assets/img/person-02.jpg" alt=""></div>
-                </div>
-                <div class="description">
-                  <figure>
-                    <div class="rating-passive" data-rating="4">
-                      <span class="stars"></span>
-                      <span class="reviews">6</span>
-                    </div>
-                    <span class="date">09.05.2016</span>
-                  </figure>
-                  <p>Donec nec tristique sapien. Aliquam ante felis, sagittis sodales diam sollicitudin, dapibus semper turpis</p>
-                </div>
-              </div>
-              <!--end review-->
-              <div class="review">
-                <div class="image">
-                  <div class="bg-transfer"><img src="assets/img/person-01.jpg" alt=""></div>
-                </div>
-                <div class="description">
-                  <figure>
-                    <div class="rating-passive" data-rating="5">
-                      <span class="stars"></span>
-                      <span class="reviews">6</span>
-                    </div>
-                    <span class="date">09.05.2016</span>
-                  </figure>
-                  <p>Vestibulum vel est massa. Integer pellentesque non augue et accumsan. Maecenas molestie elit nibh, vel vestibulum leo condimentum quis. Duis ac orci a magna auctor vehicula.
-                  </p>
-                </div>
-              </div>
-              <!--end review-->
-            </section>
-
-            <section id="write-a-review">
-              <h2>Write a Review</h2>
-              <form class="clearfix form inputs-underline">
-                <div class="box">
-                  <div class="comment">
-                    <div class="row">
-                      <div class="col-md-7">
-                        <div class="comment-title">
-                          <h4>Review your experience</h4>
-                        </div>
-                        <!--end title-->
-                        <div class="form-group">
-                          <label for="name">Title of your review<em>*</em></label>
-                          <input type="text" class="form-control" id="name" name="name" placeholder="Beautiful place!" required="">
-                        </div>
-                        <div class="form-group">
-                          <label for="message">Your Message<em>*</em></label>
-                          <textarea class="form-control" id="message" rows="8" name="message" required="" placeholder="Describe your experience"></textarea>
-                        </div>
-                        <!--end form-group-->
-                      </div>
-                      <!--end col-md-8-->
-                      <div class="col-md-5">
-                        <div class="comment-title">
-                          <h4>Rating</h4>
-                        </div>
-                        <!--end title-->
-                        <dl class="visitor-rating">
-                          <dt>Comfort</dt>
-                          <dd class="star-rating active" data-name="comfort"></dd>
-                          <dt>Location</dt>
-                          <dd class="star-rating active" data-name="location"></dd>
-                          <dt>Facilities</dt>
-                          <dd class="star-rating active" data-name="facilities"></dd>
-                          <dt>Staff</dt>
-                          <dd class="star-rating active" data-name="staff"></dd>
-                          <dt>Value for money</dt>
-                          <dd class="star-rating active" data-name="value"></dd>
-                        </dl>
-                      </div>
-                      <!--end col-md-4-->
-                    </div>
-                    <!--end row-->
-                    <br>
-                    <div class="form-group pull-right">
-                      <button type="submit" class="btn btn-primary btn-rounded">Send Review</button>
-                    </div>
-                    <!--end form-group-->
-                  </div>
-                  <!--end comment-->
-                </div>
-                <!--end review-->
-              </form>
-              <!--end form-->
-            </section>
           </div>
           <!--end col-md-6-->
           <div class="col-md-4 col-sm-12">
@@ -177,17 +85,12 @@
                   <div class="map height-250px" id="map-detail"></div>
                   <!--end map-->
                   <div class="content">
-                    <div class="vertical-aligned-elements">
-                      <div class="element"><img src="assets/img/logo-2.png" alt=""></div>
-                      <div class="element text-align-right"><a href="#" class="btn btn-primary btn-rounded btn-xs">Claim</a></div>
-                    </div>
-                    <hr>
+
                     <address>
-                                                <figure><i class="fa fa-map-marker"></i>3858 Marion Street<br>Morrisville, VT 05661 </figure>
-                                                <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
-                                                <figure><i class="fa fa-phone"></i>316-436-8619</figure>
-                                                <figure><i class="fa fa-globe"></i><a href="#">www.markysrestaurant.com</a></figure>
-                                            </address>
+                      <figure><i class="fa fa-map-marker"></i>{{house.address0}} {{house.address1}}<br>{{house.city}}, {{house.state}} {{house.zip_code}} </figure>
+                      <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
+                      <figure><i class="fa fa-phone"></i>316-436-8619</figure>
+                    </address>
                   </div>
                 </section>
               </div>
@@ -204,10 +107,6 @@
                 <li>Take-out</li>
                 <li>Balcony</li>
               </ul>
-            </section>
-            <section>
-              <h2>Social Share</h2>
-              <div class="social-share"></div>
             </section>
           </div>
           <!--end col-md-3-->
@@ -255,77 +154,31 @@
             </div>
           </section>
           <section>
-            <h2>Recent Items</h2>
-            <div class="item" data-id="1">
-              <a href="detail.html">
-                <div class="description">
-                  <figure>Average Price: $8 - $30</figure>
-                  <div class="label label-default">Restaurant</div>
-                  <h3>Marky’s Restaurant</h3>
-                  <h4>63 Birch Street</h4>
+            <h2>Similar Listings</h2>
+            {% for home in similar_homes %}
+              <div class="item" data-id="1">
+                <a href="/homes/{{home.id}}/details">
+                  <div class="description">
+                    <div class="label label-default">{{home.sale_type}}</div>
+                    <h3>{{home.address0}}</h3>
+                    <h4>{{home.address1}}</h4>
+                    <h4>{{home.num_bedrooms}} bds &middot {{home.num_bathrooms}} ba</h4>
+                    <h4>${{home.listing_price|intcomma}}</h5>
+                  </div>
+                  <!--end description-->
+                  <div class="image bg-transfer">
+                    <img src="{{home.pic_url}}" alt="">
+                  </div>
+                  <!--end image-->
+                </a>
+                <div class="controls-more">
+                  <ul>
+                    <li><a href="{{home.zillow_url}}">See on Zillow</a></li>
+                    <li><a href="/homes/{{home.id}}/details" class="quick-detail">See Details</a></li>
+                  </ul>
                 </div>
-                <!--end description-->
-                <div class="image bg-transfer">
-                  <img src="assets/img/items/1.jpg" alt="">
-                </div>
-                <!--end image-->
-              </a>
-              <div class="controls-more">
-                <ul>
-                  <li><a href="#">Add to favorites</a></li>
-                  <li><a href="#">Add to watchlist</a></li>
-                  <li><a href="#" class="quick-detail">Quick detail</a></li>
-                </ul>
               </div>
-            </div>
-            <!--end item-->
-            <div class="item" data-id="2">
-              <a href="detail.html">
-                <div class="description">
-                  <div class="label label-default">Restaurant</div>
-                  <h3>Ironapple</h3>
-                  <h4>4209 Glenview Drive</h4>
-                </div>
-                <!--end description-->
-                <div class="image bg-transfer">
-                  <img src="assets/img/items/2.jpg" alt="">
-                </div>
-                <!--end image-->
-              </a>
-              <div class="controls-more">
-                <ul>
-                  <li><a href="#">Add to favorites</a></li>
-                  <li><a href="#">Add to watchlist</a></li>
-                  <li><a href="#" class="quick-detail">Quick detail</a></li>
-                </ul>
-              </div>
-              <!--end controls-more-->
-            </div>
-            <!--end item-->
-            <div class="item" data-id="15">
-              <figure class="ribbon">Top</figure>
-              <a href="detail.html">
-                <div class="description">
-                  <figure>Happy hour: 18:00 - 19:00</figure>
-                  <div class="label label-default">Bar & Grill</div>
-                  <h3>Bambi Planet Houseboat Bar& Grill </h3>
-                  <h4>3857 Losh Lane</h4>
-                </div>
-                <!--end description-->
-                <div class="image bg-transfer">
-                  <img src="assets/img/items/3.jpg" alt="">
-                </div>
-                <!--end image-->
-              </a>
-              <div class="controls-more">
-                <ul>
-                  <li><a href="#">Add to favorites</a></li>
-                  <li><a href="#">Add to watchlist</a></li>
-                  <li><a href="#" class="quick-detail">Quick detail</a></li>
-                </ul>
-              </div>
-              <!--end controls-more-->
-            </div>
+            {% endfor %}
             <!--end item-->
           </section>
         </aside>
