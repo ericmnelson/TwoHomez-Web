@@ -19,15 +19,6 @@
     </ol>
     <div class="row">
       <div class="col-md-9 col-sm-9">
-        <section class="page-title">
-          <div class="pull-left">
-            <h1>{{house.address0}}</h1>
-            <h3>{{house.address1}}</h3>
-          </div>
-          <!--end page-title-->
-          <a href="{{house.zillow_url}}" target="_blank"  class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll pull-right"><i class="fa fa-home"></i>Buy this home</a>
-        </section>
-
         <div class="row">
           <div class="col-md-8 col-sm-12">
             <section>
@@ -43,16 +34,17 @@
             </section>
 
             <section>
-              <section>
-                <h2>About this listing</h2>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec efficitur tristique enim, ac tincidunt massa pulvinar non. Donec scelerisque libero eu tincidunt cursus. Phasellus vel commodo nunc, nec suscipit enim. Integer suscipit, mauris consectetur
-                  pharetra ultrices, neque sem malesuada mauris, id tristique ante leo vel magna. Phasellus ac risus vel erat elementum fringilla et non massa. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                </p>
-                <p>
-                  In ut varius magna. Integer ullamcorper tincidunt molestie. Morbi consequat sem non nulla laoreet, non commodo tellus elementum. Sed tincidunt, lorem vitae rhoncus pharetra, diam ex pharetra erat, eu lacinia mi libero vitae lectus. Nullam cursus bibendum
-                  magna ut elementum. Fusce eget mauris in erat gravida pretium sed eget massa. gravida pretium sed eget massa.
-                </p>
+              <section class="page-title">
+                <div class="col-md-8">
+                  <h1>{{house.address0}}</h1>
+                  <h2 style="color:black">{{house.address1}}</h2>
+                  <h2 style="color:black">{{house.num_bedrooms}} bds &middot {{house.num_bathrooms}} ba</h2>
+                </div>
+                <!--end page-title-->
+                <div class="col-md-4">
+                  <a style="margin-top:5px; margin-bottom:15px;" href="{{house.zillow_url}}" target="_blank"  class="btn btn-primary btn-framed btn-rounded btn-light-frame icon scroll"><i class="fa fa-external-link"></i>See on Zillow</a>
+                  <h2 >${{house.listing_price|intcomma}}</h3>
+                </div>
               </section>
             </section>
 
@@ -87,8 +79,13 @@
                   <div class="content">
 
                     <address>
-                      <figure><i class="fa fa-map-marker"></i>{{house.address0}} {{house.address1}}<br>{{house.city}}, {{house.state}} {{house.zip_code}} </figure>
-                      <figure><i class="fa fa-envelope"></i><a href="#">email@example.com</a></figure>
+                      <figure><i class="fa fa-map-marker"></i>{{house.address0}}<br>{{house.address1}}
+                        {% if house.address1 %}<br>{%endif%}
+                        {{house.city}}, {{house.state}} {{house.zip_code}}
+                      </figure>
+                      <figure><i class="fa fa-envelope"></i>
+                        <a href="#">email@example.com</a>
+                      </figure>
                       <figure><i class="fa fa-phone"></i>316-436-8619</figure>
                     </address>
                   </div>
@@ -99,13 +96,10 @@
             <section>
               <h2>Features</h2>
               <ul class="tags">
-                <li>Wi-Fi</li>
-                <li>Parking</li>
-                <li>TV</li>
-                <li>Alcohol</li>
-                <li>Vegetarian</li>
-                <li>Take-out</li>
                 <li>Balcony</li>
+                <li>Washer/Dryer</li>
+                <li>Great Schools</li>
+                <li>Near Transit</li>
               </ul>
             </section>
           </div>
@@ -174,7 +168,7 @@
                 <div class="controls-more">
                   <ul>
                     <li><a href="{{home.zillow_url}}">See on Zillow</a></li>
-                    <li><a href="/homes/{{home.id}}/details" class="quick-detail">See Details</a></li>
+                    <li><a href="/homes/{{home.id}}/details">See Details</a></li>
                   </ul>
                 </div>
               </div>

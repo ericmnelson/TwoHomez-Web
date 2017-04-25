@@ -59,6 +59,9 @@
             </div>
             <!--end col-md-6-->
           </div>
+          <div class="row">
+            
+          </div>
           <!--end row-->
           <div class="form-group">
             <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-search"></i></button>
@@ -75,10 +78,13 @@
             </div>
             <!--end section-title-->
             <div class="results-content">
-              {% for house in results %}
-              <div class="result-item" data-id="{{house.id}}"
-                   data-lat="{{house.latitude}}" data-lon="{{house.longitude}}"
-                   data-pic="{{house.pic_url}}" data-addr="{{house.address0}} {{house.address1}}">
+              {% if results|length == 0 %}
+              <h3 class="text-center">No results please try again</h3>
+              {% else %}
+                {% for house in results %}
+                <div class="result-item" data-id="{{house.id}}"
+                data-lat="{{house.latitude}}" data-lon="{{house.longitude}}"
+                data-pic="{{house.pic_url}}" data-addr="{{house.address0}} {{house.address1}}">
                 <a href="/homes/{{house.id}}/details">
                   <h3>{{house.address0}} {{house.address1}}</h3>
                   <div class="result-item-detail">
@@ -101,6 +107,7 @@
                 </div>
               </div>
               {% endfor %}
+            {% endif %}
             </div>
             <!--end results-content-->
           </div>
@@ -120,7 +127,6 @@
 
 {% block page_js %}
 <script type="text/javascript" src="{% static 'twohomez/js/jquery.trackpad-scroll-emulator.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'twohomez/js/bootstrap-select.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'twohomez/js/icheck.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'twohomez/js/jquery.validate.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'twohomez/js/infobox.js' %}"></script>

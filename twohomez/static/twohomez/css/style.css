@@ -2431,7 +2431,7 @@ ul.checkboxes.inline li {
 
 section:not(.block) {
   margin-top: 5px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 section:not(.block) h2 {
   margin-bottom: 20px;
@@ -7398,10 +7398,10 @@ body::before {
 }
 
 .hero-section.has-sidebar .map-wrapper {
-  width: 75%;
+  width: 65%;
 }
 .hero-section.has-sidebar .results-wrapper {
-  width: 25%;
+  width: 35%;
 }
 .hero-section .map-wrapper {
   width: 100%;

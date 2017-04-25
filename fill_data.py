@@ -24,7 +24,9 @@ def fix_address(addr):
     return addr + ".", ""
 
 if __name__ == "__main__":
-    df = pd.read_csv("scripts/data/sf_zillow_apr_23_w_latlon_w_photo_url.csv")
+    print "Deleting all homes"
+    Home.objects.all().delete()
+    df = pd.read_csv("scripts/data/sf_zillow_apr_23_w_latlon_photo_url_and_nbhrhood.csv")
     for i, row in df.iterrows():
         num_bedrooms = row['bedrooms']
         if math.isnan(num_bedrooms) or num_bedrooms <= 0.5:
@@ -49,7 +51,7 @@ if __name__ == "__main__":
             longitude=row['longitude'],
             num_bedrooms=num_bedrooms,
             num_bathrooms=num_bathrooms,
-            neighborhood='Seacliff'
+            neighborhood=row['neighborhood']
         )
         if i % 25 == 0:
             print "Created number {}".format(i)
