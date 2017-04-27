@@ -218,21 +218,22 @@ $(document).ready(function($) {
       var element = $('#' + sliderElement);
       var valueMin = parseInt($(this).attr('data-value-min'));
       var valueMax = parseInt($(this).attr('data-value-max'));
-      $(this).noUiSlider({
-        start: [valueMin, valueMax],
-        connect: true,
-        direction: rtl,
-        range: {
-          'min': [30000],
-          '10%': [100000, 1000],
-          '30%': [500000, 10000],
-          '50%': [1000000, 25000],
-          '80%': [10000000, 100000],
-          'max': [30000000]
-        },
-        step: step
-      });
+
       if ($(this).attr('data-value-type') == 'price') {
+        $(this).noUiSlider({
+          start: [valueMin, valueMax],
+          connect: true,
+          direction: rtl,
+          range: {
+            'min': [30000],
+            '10%': [100000, 1000],
+            '30%': [500000, 10000],
+            '50%': [1000000, 25000],
+            '80%': [10000000, 100000],
+            'max': [30000000]
+          },
+          step: step
+        });
         if ($(this).attr('data-currency-placement') == 'before') {
           $(this).Link('lower').to($(this).children('.values').children(
             '.value-min'), null, wNumb({
@@ -261,14 +262,27 @@ $(document).ready(function($) {
           }));
         }
       } else {
+        console.log($(this))
+        $(this).noUiSlider({
+          start: [50],
+          // connect: true,
+          direction: rtl,
+          range: {
+            'min': [valueMin],
+            'max': [valueMax]
+          },
+          // step: step
+        });
         $(this).Link('lower').to($(this).children('.values').children(
           '.value-min'), null, wNumb({
-          decimals: 0
+          postfix: '%',
+          decimals: 0,
         }));
-        $(this).Link('upper').to($(this).children('.values').children(
-          '.value-max'), null, wNumb({
-          decimals: 0
-        }));
+        // $(this).Link('upper').to($(this).children('.values').children(
+        //   '.value-max'), null, wNumb({
+        //   postfix: '%',
+        //   decimals: 0,
+        // }));
       }
     });
   }

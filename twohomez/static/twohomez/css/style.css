@@ -2543,13 +2543,13 @@ section:not(.block) h2 {
   background-color: #fff;
 }
 .background-is-dark .ui-slider .noUi-base {
-  background-color: #7434ea;
+  background-color: #fff;
 }
 .background-is-dark .ui-slider .noUi-base .noUi-connect {
   background-color: #fff;
 }
 .background-is-dark .ui-slider .noUi-base .noUi-background {
-  background-color: #7434ea;
+  background-color: #fff;
 }
 .background-is-dark .ui-slider .noUi-base .noUi-handle {
   border: 2px solid #fff;

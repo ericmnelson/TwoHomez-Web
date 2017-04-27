@@ -13,6 +13,8 @@ import pandas as pd
 import requests
 import math
 from bs4 import BeautifulSoup
+from random import randint
+
 
 def fix_address(addr):
     i = addr.find("St ")
@@ -51,7 +53,11 @@ if __name__ == "__main__":
             longitude=row['longitude'],
             num_bedrooms=num_bedrooms,
             num_bathrooms=num_bathrooms,
-            neighborhood=row['neighborhood']
+            neighborhood=row['neighborhood'],
+            fall_rent_day=randint(150,300),
+            winter_rent_day=randint(150,300),
+            spring_rent_day=randint(150,300),
+            summer_rent_day=randint(150,300),
         )
         h.mortgage = h.monthly_mortgage()
         h.save()

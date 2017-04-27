@@ -58,6 +58,10 @@ class Home(models.Model):
     )
     neighborhood = models.CharField(max_length=30, choices=NEIGHBORHOODS)
     mortgage = models.FloatField(null=True)
+    fall_rent_day = models.FloatField(null=True)
+    winter_rent_day = models.FloatField(null=True)
+    spring_rent_day = models.FloatField(null=True)
+    summer_rent_day = models.FloatField(null=True)
 
     def monthly_mortgage(self):
         L = 0.8 * self.listing_price
@@ -65,6 +69,16 @@ class Home(models.Model):
         n = 30 * 12
         return (L * (c * ((1 + c)**n))) / (((1 + c)** n) - 1)
 
+    def avg_income_stream(self, fall_avail, winter_avail, spring_avail, summer_avail):
+        fall_income = fall_avail/100.0 * self.fall_rent_day * 30.5 * 3
+        winter_income = winter_avail/100.0 * self.winter_rent_day * 30.5 * 3
+        spring_income = spring_avail/100.0 * self.spring_rent_day * 30.5 * 3
+        summer_income = summer_avail/100.0 * self.summer_rent_day * 30.5 * 3
+        total_income = fall_income + winter_income + spring_income + summer_income
+        return total/12.0
+
+    def monthly_mortgage_w_airbnb(self, fall_avail, winter_avail, spring_avail, summer_avail):
+        return self.mortgage - self.income_stream(fall_avail, winter_avail, spring_avail, summer_avail)
 
     def __str__(self):
         return "{} {} {}, {}".format(self.address0, self.address1, self.city, self.state)

@@ -6,6 +6,13 @@ a.logo {
 input.value-min {
   font-size: 12px;
 }
+
+div.percent input.value-min {
+  width:52% !important;
+  float: right !important;
+  text-align: left !important;
+}
+
 input.value-max {
   font-size: 12px;
 }
