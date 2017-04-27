@@ -54,12 +54,12 @@ if __name__ == "__main__":
             num_bedrooms=num_bedrooms,
             num_bathrooms=num_bathrooms,
             neighborhood=row['neighborhood'],
-            fall_rent_day=randint(150,300),
-            winter_rent_day=randint(150,300),
-            spring_rent_day=randint(150,300),
-            summer_rent_day=randint(150,300),
+            fall_rent_day=randint(int(row['price'])/6666,int(row['price'])/3333),
+            winter_rent_day=randint(int(row['price'])/6666,int(row['price'])/3333),
+            spring_rent_day=randint(int(row['price'])/6666,int(row['price'])/3333),
+            summer_rent_day=randint(int(row['price'])/6666,int(row['price'])/3333),
         )
-        h.mortgage = h.monthly_mortgage()
+        h.mortgage = round(h.monthly_mortgage(),2)
         h.save()
         if i % 25 == 0:
             print "Created number {}".format(i)

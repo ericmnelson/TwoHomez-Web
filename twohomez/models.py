@@ -75,10 +75,10 @@ class Home(models.Model):
         spring_income = spring_avail/100.0 * self.spring_rent_day * 30.5 * 3
         summer_income = summer_avail/100.0 * self.summer_rent_day * 30.5 * 3
         total_income = fall_income + winter_income + spring_income + summer_income
-        return total/12.0
+        return total_income/12.0
 
     def monthly_mortgage_w_airbnb(self, fall_avail, winter_avail, spring_avail, summer_avail):
-        return self.mortgage - self.income_stream(fall_avail, winter_avail, spring_avail, summer_avail)
+        return self.mortgage - self.avg_income_stream(fall_avail, winter_avail, spring_avail, summer_avail)
 
     def __str__(self):
         return "{} {} {}, {}".format(self.address0, self.address1, self.city, self.state)

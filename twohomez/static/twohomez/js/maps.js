@@ -152,15 +152,14 @@ function heroMap(_latitude, _longitude, element, markerTarget,
         var thumbnailImage;
 
         var id = $(this).data('id')
+        var url = $(this).data('url')
         thumbnailImage = $(this).data('pic');
         lat = parseFloat($(this).data('lat'));
         lon = parseFloat($(this).data('lon'));
-        console.log(result)
-        console.log(thumbnailImage)
-        console.log(lat)
-        console.log(lon)
+
         markerContent.innerHTML =
-          '<div class="marker" data-id="' + id + '">' +
+          '<div class="marker" data-id="' + id + '" data-url="' + url +
+          '">' +
           '<div class="title">' + $(this).data('addr') + '</div>' +
           '<div class="marker-wrapper">' +
           '<div class="pin">' +
@@ -207,9 +206,9 @@ function heroMap(_latitude, _longitude, element, markerTarget,
         });
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            window.location.href = "/homes/" + $(this.content.firstChild)
-              .attr("data-id") +
-              "/details"
+            console.log(this.content.firstChild)
+            window.location.href = $(this.content.firstChild)
+              .attr("data-url")
           }
         })(marker, i));
         newMarkers.push(marker);

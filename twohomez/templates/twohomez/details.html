@@ -47,24 +47,84 @@
                 </div>
               </section>
             </section>
-
             <section class="box">
-              <h2>Opening Hours</h2>
+              <div class="row">
+                <div class="col-md-12 text-center" style="padding-top:5px;padding-bottom:10px;">
+                  Planned Rental Availability:
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                    <div id="fall_slide" class="ui-slider percent inter" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{fall_avail}}">
+                        <div class="values clearfix">
+                            <input class="value-min" name="fall_avail" readonly>
+                        </div>
+                        <div class="element"></div>
+                    </div>
+                    <!--end price-slider-->
+                    <div class="text-center" style="padding-left: 10px;">
+                      Fall
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="winter_slide" class="ui-slider percent inter" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{winter_avail}}">
+                        <div class="values clearfix">
+                            <input class="value-min" name="winter_avail" readonly>
+                        </div>
+                        <div class="element"></div>
+                    </div>
+                    <!--end price-slider-->
+                    <div class="text-center" style="padding-left: 10px;">
+                      Winter
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="spring_slide" class="ui-slider percent inter" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{spring_avail}}">
+                        <div class="values clearfix">
+                            <input class="value-min" name="spring_avail" readonly>
+                        </div>
+                        <div class="element"></div>
+                    </div>
+                    <!--end price-slider-->
+                    <div class="text-center" style="padding-left: 10px;">
+                      Spring
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div id="summer_slide" class="ui-slider percent inter" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{summer_avail}}">
+                        <div class="values clearfix">
+                            <input class="value-min" name="summer_avail" readonly >
+                        </div>
+                        <div class="element"></div>
+                    </div>
+                    <!--end price-slider-->
+                    <div class="text-center" style="padding-left: 10px;">
+                      Summer
+                    </div>
+                </div>
+              </div>
+            </section>
+            <section class="box">
+              <h2>2Homez Rental Estimates</h2>
               <dl>
-                <dt>Monday</dt>
-                <dd>08:00am - 11:00pm</dd>
-                <dt>Tuesday</dt>
-                <dd>08:00am - 11:00pm</dd>
-                <dt>Wednesday</dt>
-                <dd>12:00am - 11:00pm</dd>
-                <dt>Thursday</dt>
-                <dd>08:00am - 11:00pm</dd>
-                <dt>Friday</dt>
-                <dd>03:00pm - 02:00am</dd>
-                <dt>Saturday</dt>
-                <dd>03:00pm - 02:00am</dd>
-                <dt>Sunday</dt>
-                <dd>Closed</dd>
+                <dt>Fall Daily Rental Estimate</dt>
+                <dd id="fall_rate" data-rate="{{house.fall_rent_day}}">${{house.fall_rent_day|intcomma}}</dd>
+                <dt>Winter Daily Rental Estimate</dt>
+                <dd id="winter_rate" data-rate="{{house.winter_rent_day}}">${{house.winter_rent_day|intcomma}}</dd>
+                <dt>Spring daily Rental Estimate</dt>
+                <dd id="spring_rate" data-rate="{{house.spring_rent_day}}">${{house.spring_rent_day|intcomma}}</dd>
+                <dt>Summer daily Rental Estimte</dt>
+                <dd id="summer_rate" data-rate="{{house.summer_rent_day}}">${{house.summer_rent_day|intcomma}}</dd>
+                <dt></dt>
+                <dd></dd>
+                <dt>Base Mortgage Amount</dt>
+                <dd id="mortgage_rate" data-rate="{{house.mortgage}}">${{house.mortgage|intcomma}}</dd>
+                <dt>Average monthly Rental income</dt>
+                <dd id="income_rate">-  ${{house_income|intcomma}}</dd>
+                <dt></dt>
+                <dd>----------------</dd>
+                <dt>2Homez net estimated monthly cost</dt>
+                <dd id="net_cost">${{net_cost|intcomma}}</dd>
               </dl>
             </section>
 
@@ -139,7 +199,62 @@
                   <!--end col-md-6-->
                 </div>
                 <!--end row-->
-                <div class="form-group">
+                <div class="row">
+                  <div class="col-md-12 text-center" style="padding-top:5px;padding-bottom:10px;">
+                    Planned Rental Availability:
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="ui-slider percent" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{fall_avail}}">
+                          <div class="values clearfix">
+                              <input class="value-min" name="fall_avail" readonly>
+                          </div>
+                          <div class="element"></div>
+                      </div>
+                      <!--end price-slider-->
+                      <div class="text-center" style="padding-left: 10px;">
+                        Fall
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="ui-slider percent" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{winter_avail}}">
+                          <div class="values clearfix">
+                              <input class="value-min " name="winter_avail" readonly>
+                          </div>
+                          <div class="element"></div>
+                      </div>
+                      <!--end price-slider-->
+                      <div class="text-center" style="padding-left: 10px;">
+                        Winter
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="ui-slider percent" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{spring_avail}}">
+                          <div class="values clearfix">
+                              <input class="value-min" name="spring_avail" readonly>
+                          </div>
+                          <div class="element"></div>
+                      </div>
+                      <!--end price-slider-->
+                      <div class="text-center" style="padding-left: 10px;">
+                        Spring
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="ui-slider percent" data-value-min="0" data-value-max="100" data-value-type="percent" data-value-start="{{summer_avail}}">
+                          <div class="values clearfix">
+                              <input class="value-min" name="summer_avail" readonly>
+                          </div>
+                          <div class="element"></div>
+                      </div>
+                      <!--end price-slider-->
+                      <div class="text-center" style="padding-left: 10px;">
+                        Summer
+                      </div>
+                  </div>
+                </div>
+                <div class="form-group" style="padding-top:15px;">
                   <button type="submit" class="btn btn-primary pull-right">Search Now <i class="fa fa-search"></i></button>
                 </div>
                 <!--end form-group-->
@@ -147,7 +262,7 @@
               <!--end form-hero-->
             </div>
           </section>
-          <section>
+          <section style="padding-top:30px;" class="box">
             <h2>Similar Listings</h2>
             {% for home in similar_homes %}
               <div class="item" data-id="1">
@@ -211,6 +326,32 @@
   var _longitude = {{house.longitude}};
   var element = "map-detail";
   simpleMap(_latitude, _longitude, element);
+
+  var fall_rate = parseFloat($("#fall_rate").data("rate"))
+  var winter_rate = parseFloat($("#winter_rate").data("rate"))
+  var spring_rate = parseFloat($("#spring_rate").data("rate"))
+  var summer_rate = parseFloat($("#summer_rate").data("rate"))
+  var mortgage_rate = parseFloat($("#mortgage_rate").data("rate"))
+
+  var formatMoney = function(amount) {
+    return amount.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+  }
+
+  $(".inter").change(function(){
+    fall_avail = parseFloat($("#fall_slide").val())
+    winter_avail = parseFloat($("#winter_slide").val())
+    spring_avail = parseFloat($("#spring_slide").val())
+    summer_avail = parseFloat($("#summer_slide").val())
+    fall_income = fall_avail/100.0 * fall_rate * 30.5 * 3
+    winter_income = winter_avail/100.0 * winter_rate * 30.5 * 3
+    spring_income = spring_avail/100.0 * spring_rate * 30.5 * 3
+    summer_income = summer_avail/100.0 * summer_rate * 30.5 * 3
+    total_income = fall_income + winter_income + spring_income + summer_income
+    monthly_income = total_income/12.0
+    net_cost = mortgage_rate - monthly_income
+    $("#income_rate").text("- $" + formatMoney(monthly_income))
+    $("#net_cost").text("$" + formatMoney(net_cost))
+  })
 </script>
 {% endblock %}
 </body>
