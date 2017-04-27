@@ -172,8 +172,8 @@
                           <h4>${{home.listing_price|intcomma}}</h4>
                           <div class="controls-more">
                               <ul>
-                                <li><a href="{{home.zillow_url}}">See on Zillow</a></li>
-                                <li><a href="/homes/{{home.id}}/details" class="quick-detail">See Details</a></li>
+                                <li><a href="{{home.zillow_url}}" target="_blank" >See on Zillow</a></li>
+                                <li><a href="/homes/{{home.id}}/details" >See Details</a></li>
                               </ul>
                           </div>
                           <!--end controls-more-->
@@ -202,13 +202,4 @@
 <script type="text/javascript" src="{% static 'twohomez/js/bootstrap-datepicker.js' %}"></script>
 <script type="text/javascript" src="{% static 'twohomez/js/jquery.nouislider.all.min.js' %}"></script>
 <script type="text/javascript" src="{% static 'twohomez/js/maps.js' %}"></script>
-
-  <!--
-<script type="text/javascript" src="assets/js/richmarker-compiled.js"></script>
-<script type="text/javascript" src="assets/js/markerclusterer_packed.js"></script>
-<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.fitvids.js"></script>
-<script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
-<script type="text/javascript" src="assets/js/jquery.nouislider.all.min.js"></script> -->
 {% endblock %}

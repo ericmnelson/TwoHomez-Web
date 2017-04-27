@@ -8,7 +8,7 @@ from .models import Home
 
 # Create your views here.
 def index(request):
-    featured = Home.objects.all()[0:6]
+    featured = Home.objects.all().order_by('?')[:6]
     context = {
         'featured_list': featured,
         'size_map': [3,3,6,4,3,5],

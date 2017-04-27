@@ -57,6 +57,13 @@ class Home(models.Model):
         ('Golden Gate Park', 'Golden Gate Park'),
     )
     neighborhood = models.CharField(max_length=30, choices=NEIGHBORHOODS)
+    mortgage = models.FloatField(null=True)
+
+    def monthly_mortgage(self):
+        L = 0.8 * self.listing_price
+        c = .0412/12
+        n = 30 * 12
+        return (L * (c * ((1 + c)**n))) / (((1 + c)** n) - 1)
 
 
     def __str__(self):

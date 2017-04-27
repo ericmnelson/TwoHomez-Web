@@ -53,5 +53,7 @@ if __name__ == "__main__":
             num_bathrooms=num_bathrooms,
             neighborhood=row['neighborhood']
         )
+        h.mortgage = h.monthly_mortgage()
+        h.save()
         if i % 25 == 0:
             print "Created number {}".format(i)
