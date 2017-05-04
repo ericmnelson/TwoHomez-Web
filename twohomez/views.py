@@ -6,13 +6,14 @@ from django.http import HttpResponse
 
 from .models import Home
 
+NEIGHBORHOODS = sorted([n[1] for n in Home.NEIGHBORHOODS])
 # Create your views here.
 def index(request):
     featured = Home.objects.all().order_by('?')[:6]
     context = {
         'featured_list': featured,
         'size_map': [3,3,6,4,3,5],
-        'neighborhoods': [n[1] for n in Home.NEIGHBORHOODS],
+        'neighborhoods': NEIGHBORHOODS,
     }
     return render(request, 'twohomez/index.html', context)
 
@@ -36,7 +37,7 @@ def home_detail(request, home_id):
         'house_income': round(house.avg_income_stream(50,50,50,50),2),
         'net_cost': round(house.monthly_mortgage_w_airbnb(50,50,50,50),2),
         'similar_homes': similar_homes,
-        'neighborhoods': [n[1] for n in Home.NEIGHBORHOODS],
+        'neighborhoods': NEIGHBORHOODS,
     }
     return render(request, 'twohomez/details.html', context)
 
@@ -77,6 +78,10 @@ def search_listings(request):
         "results":results[:25],
         "mortgages":mortgages,
         "styles":styles,
-        "neighborhoods": [n[1] for n in Home.NEIGHBORHOODS],
+        "neighborhoods": NEIGHBORHOODS,
     }
     return render(request, 'twohomez/results.html', context)
+
+
+def methodology(request):
+    return render(request, 'twohomez/methodology.html', {})

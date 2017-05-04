@@ -8,5 +8,7 @@ urlpatterns = [
     # ex: /search_listings
     url(r'^search_listings/$', views.search_listings, name='search_listings'),
     # ex: /
+    url(r'^methodology/$', views.methodology, name='methodology'),
+    # ex: /
     url(r'^$', views.index, name='index'),
 ]

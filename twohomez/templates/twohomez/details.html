@@ -184,7 +184,8 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <select class="form-control selectpicker" name="neighborhoods[]" multiple title="Neighborhoods" data-actions-box="true">
+                  <select class="form-control selectpicker" name="neighborhoods[]" multiple title="Neighborhoods"
+                          data-actions-box="true" data-live-search="true">
                     {% for n in neighborhoods %}
                     <option value="{{forloop.counter0}}">{{ n }}</option>
                     {% endfor %}
